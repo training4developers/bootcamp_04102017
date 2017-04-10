@@ -6,110 +6,49 @@
         <meta charset="utf-8">
 		<title>React/Redux/Relay/GraphQL Starter Application</title>
         <link rel="icon" href="data:,">
-	</head>
+        <style>
+
+            span { 
+                font-family: arial;
+                font-size:23px;
+                color: peru;
+                text-decoration: underline;
+                font-style:italic;
+                font-weight: bold;
+            }
+
+            .outer {
+                padding:0;
+                margin:0;
+                position:absolute;
+                top: 100px;
+                left: 100px;
+                width: 500px;
+                height: 200px;
+                border: 3px solid blue;
+            }
+
+            .inner {
+                margin:50px;
+                padding:30px;
+                border: 3px dashed yellowgreen;
+            }
+
+            #first { font-size:32px; }
+            #second { font-size:8px; }
+            #third { font-size:6px; }
+
+        </style>
 
 	<body>
-		<h1>Title Level 1</h1>
-		<h2>Title Level 2</h2>
-		<h3>Title Level 3</h3>
-		<h4>Title Level 4</h4>
-		<h5>Title Level 5</h5>
-		<h6>Title Level 6</h6>
-        <article>
-            <section>
-                <header>
-                    <h1>Intuit</h1>
-                    <small>Powering prosperity around the world!</small>
-                </header>
-                <aside>
-                    <nav>
-                        <ul>
-                            <li><a href="#">Item 1</a></li>
-                            <li>Item 2</li>
-                            <li>Item 3</li>
-                        </ul>
-                    </nav>
-                </aside>
-                <footer>
-                    <small>Copyright 2017, Intuit, Inc.</small>
-                </footer>
-            </section>
-        </article>
-
-        <div></div>
-        <span></span>
-
-        <p></p>
-        <nav>
-            <ul>
-                <li><a href="#">Item 1</a></li>
-                <li>Item 2</li>
-                <li>Item 3</li>
-            </ul>
-        </nav>
-        <ol>
-            <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-        </ol>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Make</th>
-                    <th>Model</th>
-                    <th>Year</th>
-                    <th>Color</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Toyota</td>
-                    <td>Prius</td>
-                    <td>2012</td>
-                    <td>blizzard pearl</td>
-                    <td>25000</td>
-                </tr>
-                <tr>
-                    <td>Alfa Romeo</td>
-                    <td>4C</td>
-                    <td>2015</td>
-                    <td>red</td>
-                    <td>55000</td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="5">
-                        Page 1 of 1
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
-
-        <form>
-            <div>
-                <label for="first-name-input">First Name:</label>
-                <input type="text" id="first-name-input" name="first-name"
-                    value="John">
-            </div>
-            <div>
-                <label for="comments-textarea">Comments</label>
-                <textarea id="comments-textarea" name="comments">Intuit is an amazing place!</textarea>
-            </div>
-            <div>
-                <label for="countries-select">Country</label>
-                <select id="countries-select" name="countries">
-                    <option value="">Select One...</option>
-                    <option value="IN">India</option>
-                    <option value="US">United States</option>
-                    <option value="CA">Canada</option>
-                    <option value="KR">Korea</option>
-                </select>
-            </div>
-        </form>
-
+        <div class="outer">
+            <div class="inner">Do or do not, there is no try.</div>
+        </div>
+        <ul>
+            <li id="first">Intuit</li>
+            <li id="second">Xero</li>
+            <li id="third">FreshBooks</li>
+        </ul>
 	</body>
 
 </html>
