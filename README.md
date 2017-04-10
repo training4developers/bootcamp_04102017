@@ -19,13 +19,13 @@ Breaks:
 
 ## Course Outline
 
-Days 1-2: HTML/CSS
-Days 3-4: JavaScript
-Day 5: React
-Day 6: Redux
-Day 7-8: GraphQL/Relay
-Day 9: Project Day
-Day 10: Unit Testing + Other Topics (class ends at 4pm)
+- Days 1-2: HTML/CSS
+- Days 3-4: JavaScript
+- Day 5: React
+- Day 6: Redux
+- Day 7-8: GraphQL/Relay
+- Day 9: Project Day
+- Day 10: Unit Testing + Other Topics (class ends at 4pm)
 
 ## Links
 
