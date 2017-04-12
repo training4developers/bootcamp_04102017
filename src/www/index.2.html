@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+	<head>
+        <meta charset="utf-8">
+		<title>React/Redux/Relay/GraphQL Starter Application</title>
+        <link rel="icon" href="data:,">
+    </head>
+
+	<body>
+
+        <script>
+
+            'use strict';
+
+            // constructor function
+            function Person(fn, ln) {
+                this.fn = fn;
+                this.ln = ln;
+            }
+
+            Person.prototype.getFullName = function() {
+                console.log(this.fn + ' ' + this.ln);
+            }
+
+            const p = new Person('Bob', 'Smith');
+            const p2 = new Person('Jane', 'Smith');
+
+            const pParent = Object.getPrototypeOf(p);
+            const p2Parent = Object.getPrototypeOf(p2);
+
+            console.log(pParent === p2Parent);
+            console.log(pParent.getFullName === p2Parent.getFullName);
+
+            console.log(pParent === Person.prototype);
+
+            p.getFullName();
+            p2.getFullName();
+
+            // console.log(p.fn);
+            // p.age = 23;
+            // console.log(p);
+
+        </script>
+
+	</body>
+
+</html>
