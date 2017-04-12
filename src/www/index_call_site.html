@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+	<head>
+        <meta charset="utf-8">
+		<title>React/Redux/Relay/GraphQL Starter Application</title>
+        <link rel="icon" href="data:,">
+    </head>
+
+	<body>
+
+        <script>
+
+            'use strict';
+
+            // function outer() {
+
+            //     var that = this;
+
+
+            //     function inner() {
+            //         console.log(that);
+            //     }
+
+            //     inner();
+            // }
+
+            // const y = {
+            //     id: 2,
+            //     outer: outer,
+            // };
+
+            // y.outer();
+
+
+            function doIt(a,b,c) {
+                console.log(this);
+                console.log(a,b,c);
+            }
+
+            // doIt();
+            // window.doIt();
+            // const o = {
+            //     id: 2,
+            //     doIt: doIt,
+            //     someFunc: function() {
+
+            //     }
+            // }
+            // o.doIt();
+            // console.log(o.doIt === doIt);
+
+            doIt.call({ id: 4 }, 1,2,3);
+            doIt.apply({ id: 4 }, [1,2,3]);
+
+            var fn = doIt.bind({ id: 6 }, 1, 2);
+            fn(5);
+
+            // function bindFn(fn, context) {
+
+            //     return function() {
+            //         fn.call(context);
+            //     }
+
+            // }
+
+
+
+        </script>
+
+	</body>
+
+</html>

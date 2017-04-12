@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+	<head>
+        <meta charset="utf-8">
+		<title>React/Redux/Relay/GraphQL Starter Application</title>
+        <link rel="icon" href="data:,">
+    </head>
+
+	<body>
+
+        <script>
+
+            'use strict';
+
+            const p = {
+                amt: 10000000
+            };
+
+            const c = Object.create(p);
+
+            console.log(c.amt);
+            p.amt = 30000;
+            console.log(c.amt);
+            c.amt = 40;
+            console.log(c.amt);
+            console.log(c);
+            delete c.amt;
+            console.log(c);
+
+            p.address = {
+                city: 'Mtn View',
+            };
+
+            console.log(c.address.city);
+            c.address.city = 'Sydney';
+            console.log(p.address.city);
+            console.log(p);
+            
+
+
+        </script>
+
+	</body>
+
+</html>
