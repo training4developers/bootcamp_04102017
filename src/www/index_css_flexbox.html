@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+	<head>
+        <meta charset="utf-8">
+		<title>React/Redux/Relay/GraphQL Starter Application</title>
+        <link rel="icon" href="data:,">
+        <style>
+
+            body {
+                margin:0px;
+                padding:0px;
+            }
+
+            .container {
+                
+                margin:20px;
+                padding:0px;
+                /*width:75px;*/
+                height:300px;
+                border:3px solid blue;
+
+                display: flex;
+                flex-direction: row;
+                flex-wrap: no-wrap;
+                justify-content:center;
+                align-items:baseline;
+
+            }
+
+            .item {
+                margin:0px;
+                padding: 5px;
+                border:3px solid red;
+                order: 1;
+                flex-grow: 1;
+            }
+
+            .item:nth-child(3) {
+                line-height: 50px;
+                order: 2;
+                flex-grow:2;
+            }
+
+        </style>
+
+	<body>
+
+        <div class="container">
+            <div class="item">
+                Content 1
+            </div>
+            <div class="item">
+                Content 2
+            </div>
+            <div class="item">
+                Content 3
+            </div>
+            <div class="item">
+                Content 4
+            </div>
+        </div>    
+
+	</body>
+
+</html>

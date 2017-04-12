@@ -1,4 +1,4 @@
-import 'bootstrap-loader';
-import '../scss/styles.scss';
+//import 'bootstrap-loader';
+//import '../scss/styles.scss';
 
-console.log('Hello World!');
+//console.log('Hello World!');
