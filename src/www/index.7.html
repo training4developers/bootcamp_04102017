@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+	<head>
+        <meta charset="utf-8">
+		<title>React/Redux/Relay/GraphQL Starter Application</title>
+        <link rel="icon" href="data:,">
+    </head>
+
+	<body>
+
+        <script>
+
+            1.
+            const p = new Promise((resolve, reject) => {
+
+                console.log('ran promise fn');
+
+                setTimeout(() => {
+                    4.
+                    console.log('timeout expired');
+                    reject('here is some data');
+                }, 2000);
+            });
+
+            2.
+            p.then(results => {
+                5.
+                console.log('promise has been resolved:', results);
+            }).catch(results => {
+                6.
+                console.log('promise has been rejected', results);
+            });
+
+            3.
+            console.log('made it here');
+
+        </script>
+
+	</body>
+
+</html>

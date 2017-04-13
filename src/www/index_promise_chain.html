@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+	<head>
+        <meta charset="utf-8">
+		<title>React/Redux/Relay/GraphQL Starter Application</title>
+        <link rel="icon" href="data:,">
+    </head>
+
+	<body>
+
+        <script>
+
+            const p = new Promise((resolve, reject) => {
+
+                setTimeout(() => {
+                    console.log('timeout expired');
+                    resolve('here is some data');
+                }, 2000);
+            });
+
+            p.then(results => {
+                console.log('promise has been resolved:', results);
+
+                // return new Promise(resolve => {
+                //     setTimeout(() => {
+                //         console.log('timeout 2 expired');
+                //         resolve('second promise');
+                //     }, 2000);
+                // })
+
+                return 'Vanya I am sorry for ruining you Chinese food experience...';
+
+            }).catch(error => {
+                // do something
+                return Promise.reject('almost time for lunch');
+            }).then(results => {
+                console.log(results);
+            }).catch(error => {
+                
+            });
+
+            console.log('made it here');
+
+        </script>
+
+	</body>
+
+</html>

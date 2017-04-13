@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+	<head>
+        <meta charset="utf-8">
+		<title>React/Redux/Relay/GraphQL Starter Application</title>
+        <link rel="icon" href="data:,">
+    </head>
+
+	<body>
+
+        <script>
+
+            'use strict';
+
+            class Person {
+
+                constructor(fn, ln) {
+                    this.fn = fn;
+                    this.ln = ln;
+                }
+
+                static create(fullName) {
+                    const parts = fullName.split(' ');
+                    return new Person(parts[0], parts[1]);
+                }
+            }
+
+            const p = Person.create('Bob Smith');
+
+
+        </script>
+
+	</body>
+
+</html>
