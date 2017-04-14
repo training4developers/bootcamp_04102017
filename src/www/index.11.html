@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+	<head>
+        <meta charset="utf-8">
+		<title>React/Redux/Relay/GraphQL Starter Application</title>
+        <link rel="icon" href="data:,">
+    </head>
+
+	<body>
+
+        <script>
+
+            // function t(p) {
+            //     console.log(p);
+            // }
+
+            // var h = 'this is';
+
+            // t(h);
+            // t('this is');
+
+            // const myKey = 'this is';
+
+            // const m = new Map();
+
+            // m.set(3, 9);
+            // m.set(myKey, 'this is fun!');
+
+            // console.log(m.get(3));
+            // console.log(m.get(myKey));
+
+            // const t = { id:3 };
+            // const s = { id:3};
+
+            // console.log(t === s);
+
+            const m = new Map([ 
+                [ 'alex', { interestingThing: 'EE major' } ],
+                [ 'shree', { interestingThing: 'Loves coffee' } ],
+                [ 'vibha', { interestingThing: 'Take caffeine pills' } ],
+            ]);
+
+            for (var [ key, value ] of m) {
+                console.log(key, value.interestingThing);
+            }
+
+
+            const carLot = {
+                cars: [
+                    { make: 'Ford', model: 'Focus' },
+                    { make: 'Chevy', model: 'Cruze' },
+                    { make: 'Lexus', model: 'IS350 '}
+                ]
+            };
+
+            carLot[Symbol.iterator] = function*() {
+                for (let i=0; i<this.cars.length; i++) {
+                    console.log('cars for loop');
+                    yield this.cars[i];
+                }
+            };
+
+            for (let { make } of carLot) {
+                console.log('carLot for-of loop');
+                console.log(make);
+            }
+
+            const colors = new Set();
+
+            colors.add('green');
+            colors.add('white');
+            //colors.add('saffron');
+            //colors.add('red');
+            //colors.add('black');
+            //colors.add('blue');   
+            colors.add('green');
+
+            console.log(colors.entries());
+
+            console.log([1,2,3,4].includes(2));
+
+            console.log([1,2,2].lastIndexOf(2));
+
+            console.log('Intuit is amazing'.includes('is'));
+
+            console.log(3 ** 7);
+
+
+        </script>
+
+	</body>
+
+</html>

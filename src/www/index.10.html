@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+	<head>
+        <meta charset="utf-8">
+		<title>React/Redux/Relay/GraphQL Starter Application</title>
+        <link rel="icon" href="data:,">
+    </head>
+
+	<body>
+
+        <script>
+
+            const firstName = 'Bob';
+
+            const p = {
+                firstName,
+                lastName: 'Smith',
+                getFullName() {
+                    console.log(this.firstName + ' ' + this.lastName);
+                },
+                get age() {
+                    return this._age;
+                },
+                set age(value) {
+                    this._age = value;
+                },
+            };
+
+            p.age = 23;
+            console.log(p.age);
+
+            const t = ({ action }) => ({ action });
+
+            console.log(p.firstName);
+
+
+        </script>
+
+	</body>
+
+</html>
