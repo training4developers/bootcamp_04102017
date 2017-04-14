@@ -6,23 +6,40 @@ import ReactDOM from 'react-dom';
 
 class ColorTool extends React.Component {
 
-    render() {
-        // return React.createElement('h1', null, 'Hello World');
+    constructor(props) {
+        super(props);
 
-        // <h1>Hello World</h1>
+        this.state = {
+            newColor: '',
+        };
+
+        // this.onChange = this.onChange.bind(this);
+    }
+
+    onChange = (e) => {
+        this.setState({
+            [ e.currentTarget.name ]: e.currentTarget.value,
+        });
+    } 
+
+    render() {
         return <div>
-            <h1>Color Tool</h1>
+            <h1>{this.props.header}</h1>
             <ul>
-                <li>green</li>
-                <li>white</li>
-                <li>saffron</li>
-                <li>red</li>
-                <li>blue</li>
-                <li>black</li>
+                {this.props.colors.map(color => <li>
+                    {color}
+                </li>)}
             </ul>
+            <form>
+                <label htmlFor="new-color-input">New Color:</label>
+                <input type="text" id="new-color-input" name="newColor"
+                    value={this.state.newColor} onChange={this.onChange} />
+            </form>
         </div>;
     }
 
 }
 
-ReactDOM.render(<ColorTool />, document.querySelector('main'));
+const colors = [ 'green', 'white', 'saffron', 'red', 'blue', 'black' ];
+
+ReactDOM.render(<ColorTool header='Color Tool!!!' colors={colors}  />, document.querySelector('main'));
