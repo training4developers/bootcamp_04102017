@@ -70,6 +70,7 @@
     "pluralize": "^4.0.0",
     "postcss": "^5.2.10",
     "postcss-loader": "^1.2.2",
+    "prop-types": "^15.5.8",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-relay": "^0.10.0",

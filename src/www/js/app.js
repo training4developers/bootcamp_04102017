@@ -34,7 +34,7 @@ class ColorTool extends React.Component {
 
     render() {
         return <div>
-            <ToolHeader header={this.props.header} />
+            <ToolHeader header={'Jonathan, Head of the Deprecation Committee, Rocks!'} />
             <UnorderedItemList items={this.state.colors} />
             <form>
                 <label htmlFor="new-color-input">New Color:</label>
