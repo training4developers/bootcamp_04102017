@@ -5,6 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { ToolHeader } from './components/tool-header';
+import { UnorderedItemList } from './components/unordered-item-list';
 
 class ColorTool extends React.Component {
 
@@ -34,11 +35,7 @@ class ColorTool extends React.Component {
     render() {
         return <div>
             <ToolHeader header={this.props.header} />
-            <ul>
-                {this.state.colors.map(color => <li>
-                    {color}
-                </li>)}
-            </ul>
+            <UnorderedItemList items={this.state.colors} />
             <form>
                 <label htmlFor="new-color-input">New Color:</label>
                 <input type="text" id="new-color-input" name="newColor"
