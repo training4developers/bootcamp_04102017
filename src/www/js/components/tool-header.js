@@ -1,21 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export class ToolHeader extends React.Component {
+export const ToolHeader = props => {
 
-    static propTypes = {
-        header: PropTypes.string.isRequired,
+    const onClick = () => {
+        console.log('clicked');
     };
 
-    // static defaultProps = {
-    //     header: 'Tool Header',
-    // }
+    return <header>
+        <h1 onClick={onClick}>{props.header}</h1>
+    </header>;
 
-    render() {
+};
 
-        return <header>
-            <h1>{this.props.header}</h1>
-        </header>;
-    }
+ToolHeader.propTypes = {
+    header: PropTypes.string.isRequired,
+};
 
-}
+ToolHeader.defaultProps = {
+    header: 'Tool Header',
+};

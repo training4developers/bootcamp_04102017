@@ -1,52 +1,73 @@
-import 'bootstrap-loader';
-import '../scss/styles.scss';
+import keyMirror from 'key-mirror';
 
-import React from 'react';
-import ReactDOM from 'react-dom';
+const actionTypes = keyMirror({
+    ADD: null,
+    SUBTRACT: null,
+});
 
-import { ToolHeader } from './components/tool-header';
-import { UnorderedItemList } from './components/unordered-item-list';
 
-class ColorTool extends React.Component {
+const reducer = (state = { result: 0 }, action) => {
 
-    constructor(props) {
-        super(props);
+    switch(action.type) {
+        case actionTypes.ADD:
+            return Object.assign({}, state, { result: state.result + action.value });
+        case actionTypes.SUBTRACT:
+            return Object.assign({}, state, { result: state.result - action.value });
+        default:
+            return state;
+    }
 
-        this.state = {
-            newColor: '',
-            colors: props.colors.concat(),
+};
+
+
+const createStore = reducerFn => {
+
+    let state = undefined;
+    const callbacks = [];
+
+    return {
+        getState: () => { return state; },
+        dispatch: action => {
+            state = reducerFn(state, action);
+            callbacks.forEach(cb => cb());
+        },
+        subscribe: cb => {
+            callbacks.push(cb);
+        },
+    };
+
+};
+
+const store = createStore(reducer);
+
+store.subscribe(() => {
+    console.log(store.getState());
+});
+
+const addActionCreator = value => ({ type: actionTypes.ADD, value });
+const subtractActionCreator = value => ({ type: actionTypes.SUBTRACT, value });
+
+const bindActionCreators = (actionCreators, dispatch) => {
+
+    let actions = {};
+
+    Object.keys(actionCreators).forEach(actionKey => {
+        actions[actionKey] = (...params) => {
+            dispatch(actionCreators[actionKey](...params));
         };
+    });
 
-        // this.onChange = this.onChange.bind(this);
-    }
+    return actions;
+};
 
-    onChange = (e) => {
-        this.setState({
-            [ e.currentTarget.name ]: e.currentTarget.value,
-        });
-    } 
+const { add, subtract } = bindActionCreators({
+    add: addActionCreator,
+    subtract: subtractActionCreator
+}, store.dispatch);
 
-    onClick = () => {
-        this.setState({
-            colors: this.state.colors.concat(this.state.newColor),
-        });
-    }
-
-    render() {
-        return <div>
-            <ToolHeader header={'Jonathan, Head of the Deprecation Committee, Rocks!'} />
-            <UnorderedItemList items={this.state.colors} />
-            <form>
-                <label htmlFor="new-color-input">New Color:</label>
-                <input type="text" id="new-color-input" name="newColor"
-                    value={this.state.newColor} onChange={this.onChange} />
-                <button type="button" onClick={this.onClick}>Add Color</button>
-            </form>
-        </div>;
-    }
-
-}
-
-const colors = [ 'green', 'white', 'saffron', 'red', 'blue', 'black' ];
-
-ReactDOM.render(<ColorTool header='Color Tool!!!' colors={colors}  />, document.querySelector('main'));
+// ----------------- DMZ -------------------
+add(1);
+subtract(2);
+add(3);
+subtract(4);
+add(5);
