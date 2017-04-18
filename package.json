@@ -74,6 +74,7 @@
     "prop-types": "^15.5.8",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
+    "react-redux": "^5.0.4",
     "react-relay": "^0.10.0",
     "redux": "^3.6.0",
     "resolve-url-loader": "^2.0.2",

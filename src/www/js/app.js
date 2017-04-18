@@ -1,5 +1,7 @@
 import keyMirror from 'key-mirror';
 import { createStore, bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -120,11 +122,78 @@ export class MyCalculator extends React.Component {
 
 }
 
-store.subscribe(() => {
-
-    ReactDOM.render(<MyCalculator {...actions} result={store.getState().result} />, document.querySelector('main'));
-
+// redux state
+// props of the root presentational component
+const mapStateToProps = state => ({
+    result: state.result,
 });
 
-store.dispatch({ type: 'noop' });
+// redux action creators and ability to dispatch
+// props of the root presentational component
+const mapDispatchToProps = dispatch => bindActionCreators({
+    add: addActionCreator,
+    subtract: subtractActionCreator,
+    multiply: multiplyActionCreator,
+    divide: divideActionCreator,
+}, dispatch);
+
+// const connect = (mapStateToProps, mapDispatchToProps) => {
+
+//     return PresentationalComponent => {
+
+//         return class ContainerComponent extends React.Component {
+
+//             static propTypes = {
+//                 store: PropTypes.object.isRequired,
+//             };
+
+//             constructor(props) {
+//                 super(props);
+
+//                 this.actions = mapDispatchToProps(props.store.dispatch);
+//             }
+
+//             componentDidMount() {
+//                 this.unsubscribeFromStore = this.props.store.subscribe(() => {
+//                     this.forceUpdate();
+//                 });
+//             }
+
+//             componentWillUnmount() {
+//                 this.unsubscribeFromStore();
+//             }
+
+//             render() {
+
+//                 const stateToProps = mapStateToProps(this.props.store.getState());
+
+//                 return <PresentationalComponent {...this.actions} {...stateToProps} />;
+
+//             }
+
+//         };
+
+//     };
+
+// };
+
+const MyCalculatorContainer = connect(mapStateToProps, mapDispatchToProps)(MyCalculator);
+
+
+ReactDOM.render(
+    <MyCalculatorContainer store={store} />,
+    document.querySelector('main')
+);
+
+
+
+
+// store.subscribe(() => {
+
+//     ReactDOM.render(<MyCalculator {...actions} result={store.getState().result} />,
+//     document.querySelector('main'));
+
+// });
+
+// store.dispatch({ type: 'noop' });
 
