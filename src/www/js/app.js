@@ -1,5 +1,6 @@
 import keyMirror from 'key-mirror';
-import { createStore, bindActionCreators } from 'redux';
+import { createStore, bindActionCreators, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import React from 'react';
@@ -49,7 +50,7 @@ const reducer = (state = { result: 0 }, action) => {
 
 // };
 
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(thunk));
 
 store.subscribe(() => {
     console.log(store.getState());
@@ -73,12 +74,32 @@ const divideActionCreator = value => ({ type: actionTypes.DIVIDE, value });
 //     return actions;
 // };
 
-const actions = bindActionCreators({
-    add: addActionCreator,
-    subtract: subtractActionCreator,
-    multiply: multiplyActionCreator,
-    divide: divideActionCreator,
-}, store.dispatch);
+const add = value => {
+
+    return dispatch => {
+
+        // return fetch('http://localhost:3010/books')
+        //     .then(res => res.json())
+        //     .then(results => dispatch(actionCreator(results)));
+
+        return new Promise(resolve => {
+
+            setTimeout(() => {
+                resolve(value);
+            },  2000);
+
+        }).then(result => dispatch(addActionCreator(result)));
+
+    };
+
+};
+
+// const actions = bindActionCreators({
+//     add,
+//     subtract: subtractActionCreator,
+//     multiply: multiplyActionCreator,
+//     divide: divideActionCreator,
+// }, store.dispatch);
 
 // Redux
 
@@ -111,7 +132,7 @@ export class MyCalculator extends React.Component {
     render() {
         return <form>
             <input type="number" value={this.state.value} name="value" onChange={this.onChange} /><br />
-            <button type="button" onClick={() => this.props.add(this.state.value)}>Add</button> 
+            <button type="button" onClick={() => this.props.add(this.state.value).then(() => { console.log('added'); })}>Add</button> 
             <button type="button" onClick={() => this.props.subtract(this.state.value)}>Subtract</button> 
             <button type="button" onClick={() => this.props.multiply(this.state.value)}>Multiply</button> 
             <button type="button" onClick={() => this.props.divide(this.state.value)}>Divide</button><br />
@@ -131,7 +152,7 @@ const mapStateToProps = state => ({
 // redux action creators and ability to dispatch
 // props of the root presentational component
 const mapDispatchToProps = dispatch => bindActionCreators({
-    add: addActionCreator,
+    add,
     subtract: subtractActionCreator,
     multiply: multiplyActionCreator,
     divide: divideActionCreator,
@@ -197,3 +218,12 @@ ReactDOM.render(
 
 // store.dispatch({ type: 'noop' });
 
+// GET
+fetch('http://localhost:3010/books').then(res => res.json()).then(results => console.log(results));
+
+// POST
+fetch('http://localhost:3010/books', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ title: 'Candide', category: 'Philosophy', price: 0.05, authorId: 1 })
+}).then(() => fetch('http://localhost:3010/books')).then(res => res.json()).then(books => console.log(books));
