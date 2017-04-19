@@ -34,10 +34,10 @@ Load the data set into db.json, then commence programming.
 - Table Specifications
 
     - Clicking the column header will sort the data in that column
-    - A text box positioned above the table will filter on one pre-selected column
+    - A text box positioned above the table will filter on one hard-coded column (optionally, provide a drop down to select the column)
     - Each row will have an 'Edit' and 'Delete' button in the last column
     - Clicking 'Edit' will switch the row to edit mode with form controls for editing data
-    - Clicking 'Delete' will delete the row (optionally, include a delete confirmation UI element, no window.config boxes)
+    - Clicking 'Delete' will delete the row (optionally, include a delete confirmation UI element, no window.confirm boxes)
     - On the Edit Row, there will be two buttons, 'Save' and 'Cancel'
     - Clicking 'Save' will save the row, and return to view mode
     - Clicking 'Cancel' will not save any changes, and return to view mode
@@ -64,6 +64,6 @@ Load the data set into db.json, then commence programming.
 
 - All four CRUD operations work from the UI
 - There are no errors in the console
-- All of the requirements are met
+- All of the requirements are met, and implement one optional requirement
 - Each member of the team made a significant contribution, and can describe to the instructor what they coded
 - The application looks good. There will be some evidence of effort to make it look good.
