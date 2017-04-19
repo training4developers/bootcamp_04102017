@@ -42,18 +42,18 @@ Load the data set into db.json, then commence programming.
     - Clicking 'Save' will save the row, and return to view mode
     - Clicking 'Cancel' will not save any changes, and return to view mode
 
-- Form for Adding New Data Specification
+- Form for Adding New Data Specifications
 
     - Use at least one of each control above
     - Implement validation for any three of the controls
     - If a control is invalid display some kind of indicator
     - Optionally, display a validation summary
 
-- The theme of the web site should match the color sheme of the mascot image
+- The theme of the web site should match the color sheme of the mascot image. The mascot image should be displayed in the header.
 
-- Add an about link on the header which displays popup with your team name and picture displayed
+- Add an 'About' link on the header which displays popup with your team name and picture displayed. Also, include some kind of motivational team slogan statement.
 
-- Use Redux to manage application state, use React to manage form control state
+- Concerning state, use Redux to manage application state, use React to manage form control state. Please use React-Redux to connect React and Redux, and use Redux-Thunk for handling asychronous operations.
 
 - Where possible use stateless functions and pure components.
 
@@ -66,4 +66,4 @@ Load the data set into db.json, then commence programming.
 - There are no errors in the console
 - All of the requirements are met, and implement one optional requirement
 - Each member of the team made a significant contribution, and can describe to the instructor what they coded
-- The application looks good. There will be some evidence of effort to make it look good.
+- The application looks good. There will be some evidence of effort to make it look good and use the color theme.
