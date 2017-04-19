@@ -1,4 +1,4 @@
-# Front-End Bootcamp Group Project
+# Front-End Boot Camp Group Project
 
 Welcome to the Group Project! You should know your group, and the following group preparation work should have been completed...
 
@@ -15,13 +15,13 @@ Build a complete CRUD application using HTML/CSS/JS and the libraries React and 
 
 - Determine a data set which will permit you to create a form with following controls:
 
-Input - Text
-Input - Number
-Input - Date
-Input - Color
-TextArea
-Select - Drop Down
-Select - List Box + Multi-Select
+    - Input - Text
+    - Input - Number
+    - Input - Date
+    - Input - Color
+    - TextArea
+    - Select - Drop Down
+    - Select - List Box + Multi-Select
 
 Load the data set into db.json, then commence programming.
 
