@@ -85,12 +85,18 @@
     "webpack": "^2.3.3",
     "whatwg-fetch": "^2.0.1"
   },
-  "devServer": {
-    "contentBase": "dist/www",
-    "historyApiFallback": true,
-    "port": 3000
-  },
-  "graphQLServer": {
-    "port": 3020
-  }
+    "devServer": {
+        "contentBase": "dist/www",
+        "historyApiFallback": true,
+        "port": 3000,
+        "proxy": {
+            "/graphql": {
+                "target": "http://localhost:3020",
+                "changeOrigin": true
+            }
+        }
+    },
+    "graphQLServer": {
+        "port": 3020
+    }
 }

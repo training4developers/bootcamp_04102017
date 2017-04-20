@@ -1,0 +1,94 @@
+query {
+  // alias
+  friend: person(id: 2) {
+    // fragment
+    ...personName
+  },
+  foe: person(id: 2) {
+    ...personName
+  }
+}
+
+// normal fragments have a type
+fragment personName on Person {
+  firstName
+  lastName
+}
+
+query PeopleWhoMatter {
+  friend: person(id: 2) {
+    ...personName
+  },
+  foe: person(id: 2) {
+    ...personName
+  }
+  entity(id: 3) {
+    id
+    ... on Person {
+      firstName
+    }
+  }
+}
+
+fragment personName on Person {
+  firstName
+  lastName
+}
+
+query PeopleWhoMatter($entityId: Int) {
+  friend: person(id: 2) {
+    ...personName
+  },
+  foe: person(id: 2) {
+    ...personName
+  }
+  entity(id: $entityId) {
+    id
+    ... on Person {
+      firstName
+    }
+  }
+}
+
+fragment personName on Person {
+  firstName
+  lastName
+}
+
+{
+  "entityId": 2
+}
+
+query PeopleWhoMatter($entityId: Int) {
+  friend: person(id: 2) {
+    ...personName
+  },
+  foe: person(id: 2) {
+    ...personName
+  }
+  entity(id: $entityId) {
+    id
+    ... on Person @include(if: false) {
+      firstName
+    }
+  }
+}
+
+fragment personName on Person {
+  firstName
+  lastName
+}
+
+mutation CreatePerson($person: InputPerson) {
+  insertPerson(person: $person) {
+    id
+    ... on Person {
+      firstName
+      lastName
+    }
+  }
+}
+
+{
+  "person": {"firstName": "Eric", "lastName": "Greene" }
+}

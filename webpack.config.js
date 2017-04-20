@@ -50,13 +50,13 @@ module.exports = {
                 use: [{
                     loader: 'babel-loader',
                     options: {
-                        // passPerPreset: true,
-                        // {
-                        //     'plugins': [`${__dirname}/../build/babel-relay-plugin`]
-                        // },
+                        passPerPreset: true,
                         presets: ['react', 'latest'],
-                        plugins: ['transform-class-properties']
-                    }
+                        plugins: [
+                            'transform-class-properties',
+                            //`${__dirname}/build/babel-relay-plugin`,
+                        ],
+                    },
                 }],
             },
             // transpiles global SASS stylesheets

@@ -18,7 +18,7 @@ export default function (config) {
         }
     });
 
-    app.use('/', graphqlHttp(graphqlHttpConfig(schema)));
+    app.use('/graphql', graphqlHttp(graphqlHttpConfig(schema)));
 
     server.listen(config.graphQLServer.port, err => {
 
