@@ -1,6 +1,7 @@
 import {
-    GraphQLSchema, GraphQLObjectType, GraphQLString,
-    GraphQLInt, GraphQLList, GraphQLID, GraphQLInterfaceType } from 'graphql';
+    GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLInputObjectType,
+    GraphQLInt, GraphQLList, GraphQLID, GraphQLInterfaceType
+} from 'graphql';
 
 class Servant {
     constructor(data) {
@@ -91,6 +92,20 @@ const cats = [
     new Cat({ id: 3, hairColor: 'black', age: 10, livesLeft: 1, name: 'Fluffy Meowington', servantId: 1  }),
 ];
 
+export const inputCat = new GraphQLInputObjectType({
+
+    name: 'InputCat',
+    description: 'Special Input Type for Cats',
+    fields: () => ({
+        hairColor: { type: GraphQLString },
+        age: { type: GraphQLInt },
+        livesLeft: { type: GraphQLInt },
+        name: { type: GraphQLString },
+        servantId: { type: GraphQLInt },
+    })
+
+});
+
 export const schema = new GraphQLSchema({
 
     query: new GraphQLObjectType({
@@ -138,5 +153,24 @@ export const schema = new GraphQLSchema({
         },
 
     }),
+
+    mutation: new GraphQLObjectType({
+
+        name: 'Mutation',
+        fields: () => ({
+            addCat: {
+                type: catType,
+                args: {
+                    cat: { type: inputCat }
+                },
+                resolve: (_, { cat }) => {
+                    cat.id = cats.length + 1;
+                    cats.push(cat);
+                    return cat;
+                }
+            }
+        }),
+
+    })
 
 });

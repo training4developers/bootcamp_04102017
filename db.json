@@ -215,6 +215,13 @@
       "price": 0.05,
       "authorId": 1,
       "id": 23
+    },
+    {
+      "title": "Candide",
+      "category": "Philosophy",
+      "price": 0.05,
+      "authorId": 1,
+      "id": 24
     }
   ]
 }
