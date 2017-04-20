@@ -1,121 +1,77 @@
-import {
-    GraphQLSchema, GraphQLObjectType, GraphQLString,
-    GraphQLInt, GraphQLID, GraphQLInterfaceType, GraphQLInputObjectType,
-} from 'graphql';
+import { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLList, GraphQLID } from 'graphql';
 
-const people = [
-    { id: 1, firstName: 'Bob', lastName: 'Smith' },
-    { id: 2, firstName: 'John', lastName: 'Thomas' },
-    { id: 3, firstName: 'Irene', lastName: 'Simmons' },
-];
+export const catServant = new GraphQLObjectType({
 
-const entityInterface = new GraphQLInterfaceType({
-
-    name: 'Entity',
-    description: 'An entity interface',
-    resolveType: (data, context, query) => {
-        // take data and determine type
-        return personType;
-    }, 
-    fields: () => ({
-        id: { type: GraphQLID },
-    })
-});
-
-const personType = new GraphQLObjectType({
-
-    name: 'Person',
-    description: 'A person',
+    name: 'CatServant',
     fields: {
         id: {
             type: GraphQLID,
-            description: 'The id of the user'
         },
-        firstName: {
+        name: {
             type: GraphQLString,
-            description: 'The first name of the person',
-            // param1: object passed from parent resolve
-            resolve: ({ firstName }) => firstName,
-        },
-        lastName: {
-            type: GraphQLString,
-            description: 'The last name of the person',
         },
     },
-    interfaces: () => ([ entityInterface ]),
-});
-
-
-export const personInputType = new GraphQLInputObjectType({
-    
-    name: 'InputPerson',
-    description: 'Person input type',
-    fields: () => ({
-        firstName: { type: GraphQLString },
-        lastName: { type: GraphQLString },
-    }),
 
 });
 
+export const catType = new GraphQLObjectType({
+
+    name: 'Cat',
+    description: 'A type for cute, furry, lovable mammals',
+    fields: {
+        hairColor: {
+            type: GraphQLString,
+            description: 'The color of the cat hair',
+        },
+        age: {
+            type: GraphQLInt,
+            description: 'The number of times the cat has circled the sun',
+        },
+        livesLeft: {
+            type: GraphQLInt,
+            description: 'How long until the cat expires',
+        },
+        servant: {
+            type: catServant,
+            resolve: ({ servant }) => {
+                
+                console.log('called servant resolve');
+                
+                return servant;
+            }
+        }
+    }
+
+});
+
+const catServant1 = { id: 1, name: 'Jonathan' }; 
+const catServant2 = { id: 2, name: 'Ashwin' }; 
+
+const cats = [
+    { hairColor: 'white', age: 7, livesLeft: 4, name: 'Garfield', servant: catServant1 },
+    { hairColor: 'orange', age: 3, livesLeft: 7, name: 'Marvin', servant: catServant2 },
+    { hairColor: 'black', age: 10, livesLeft: 1, name: 'Fluffy Meowington', servant: catServant1  },
+];
 
 export const schema = new GraphQLSchema({
-
-    mutation: new GraphQLObjectType({
-
-        name: 'Mutation',
-        description: 'The mutation type',
-        fields: () => ({
-            insertPerson: {
-                type: personType,
-                description: 'insert a person',
-                args: {
-                    person: { type: personInputType },
-                },
-                resolve: (_, { person }) => {
-                    person.id = people.length + 1;
-                    people.push(person);
-                    return person;
-                }
-            }
-        }),
-    }),
 
     query: new GraphQLObjectType({
 
         name: 'Query',
-        description: 'Our query type',
+        description: 'Top-Level Query',
         fields: {
-
-            message : {
+            message: {
                 type: GraphQLString,
-                description: 'a simple message',
-                resolve: () => 'here is the message!',
+                description: 'A nice message for you',
+                resolve: () => 'Keep Smiling!',
             },
-
-            person: {
-                type: personType,
-                description: 'a single person',
-                args: {
-                    id: {
-                        type: GraphQLInt,
-                        description: 'The id of the person to query',
-                    }
-                },
-                // param2: args
-                resolve: (_, { id }) => people.find(p => p.id === id),
-            },
-
-            entity: {
-                type: entityInterface,
-                description: 'a entity',
-                args: {
-                    id: {
-                        type: GraphQLInt,
-                        description: 'The id of the entity'
-                    }
-                },
-                resolve: (_, { id }) => people.find(p => p.id === id),
+            cats: {
+                type: new GraphQLList(catType),
+                description: 'A list of kitties',
+                resolve: () => cats,
             }
         },
+
     }),
+
 });
