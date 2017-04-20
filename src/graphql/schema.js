@@ -70,6 +70,16 @@ export const schema = new GraphQLSchema({
                 type: new GraphQLList(catType),
                 description: 'A list of kitties',
                 resolve: () => cats,
+            },
+            cat: {
+                type: catType,
+                description: 'A single kitty',
+                args: { 
+                    catId: {
+                        type: GraphQLID,
+                    }
+                },
+                resolve: (_, { catId }) => cats.find(cat => cat.id === parseInt(catId)),
             }
         },
 
