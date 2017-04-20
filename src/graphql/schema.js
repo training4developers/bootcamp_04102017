@@ -3,14 +3,18 @@ import { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLLis
 export const catServant = new GraphQLObjectType({
 
     name: 'CatServant',
-    fields: {
+    fields: () => ({
         id: {
             type: GraphQLID,
         },
         name: {
             type: GraphQLString,
         },
-    },
+        cats: {
+            type: new GraphQLList(catType),
+            resolve: ({ catIds }) => cats.filter(cat => catIds.includes(cat.id)), 
+        }
+    }),
 
 });
 
@@ -18,7 +22,7 @@ export const catType = new GraphQLObjectType({
 
     name: 'Cat',
     description: 'A type for cute, furry, lovable mammals',
-    fields: {
+    fields: () => ({
         hairColor: {
             type: GraphQLString,
             description: 'The color of the cat hair',
@@ -33,24 +37,21 @@ export const catType = new GraphQLObjectType({
         },
         servant: {
             type: catServant,
-            resolve: ({ servant }) => {
-                
-                console.log('called servant resolve');
-                
-                return servant;
-            }
+            resolve: ({ servantId }) => servants.find(servant => servant.id === servantId),
         }
-    }
+    })
 
 });
 
-const catServant1 = { id: 1, name: 'Jonathan' }; 
-const catServant2 = { id: 2, name: 'Ashwin' }; 
+const servants = [
+    { id: 1, name: 'Jonathan', catIds: [1,3] },
+    { id: 2, name: 'Ashwin', catIds: [2] },
+];
 
 const cats = [
-    { hairColor: 'white', age: 7, livesLeft: 4, name: 'Garfield', servant: catServant1 },
-    { hairColor: 'orange', age: 3, livesLeft: 7, name: 'Marvin', servant: catServant2 },
-    { hairColor: 'black', age: 10, livesLeft: 1, name: 'Fluffy Meowington', servant: catServant1  },
+    { id: 1, hairColor: 'white', age: 7, livesLeft: 4, name: 'Garfield', servantId: 1 },
+    { id: 2, hairColor: 'orange', age: 3, livesLeft: 7, name: 'Marvin', servantId: 2 },
+    { id: 3, hairColor: 'black', age: 10, livesLeft: 1, name: 'Fluffy Meowington', servantId: 1  },
 ];
 
 export const schema = new GraphQLSchema({
