@@ -1,3 +1,4 @@
+import fetch from 'node-fetch';
 import {
     GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLInputObjectType,
     GraphQLInt, GraphQLList, GraphQLID, GraphQLInterfaceType
@@ -106,6 +107,13 @@ export const inputCat = new GraphQLInputObjectType({
 
 });
 
+export const bookType = new GraphQLObjectType({
+    name: 'Book',
+    fields: () => ({
+        title: { type: GraphQLString },
+    }),
+})
+
 export const schema = new GraphQLSchema({
 
     query: new GraphQLObjectType({
@@ -113,6 +121,10 @@ export const schema = new GraphQLSchema({
         name: 'Query',
         description: 'Top-Level Query',
         fields: {
+            books: {
+                type: new GraphQLList(bookType),
+                resolve: () => fetch('http://localhost:3010/books').then(res => res.json()),
+            },
             message: {
                 type: GraphQLString,
                 description: 'A nice message for you',

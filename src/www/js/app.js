@@ -1,5 +1,7 @@
+import '../scss/styles.scss';
+
 import keyMirror from 'key-mirror';
-import { createStore, bindActionCreators, applyMiddleware } from 'redux';
+import { createStore, bindActionCreators, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -50,7 +52,9 @@ const reducer = (state = { result: 0 }, action) => {
 
 // };
 
-const store = createStore(reducer, applyMiddleware(thunk));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 
 store.subscribe(() => {
     console.log(store.getState());
@@ -130,14 +134,19 @@ export class MyCalculator extends React.Component {
     }
 
     render() {
-        return <form>
-            <input type="number" value={this.state.value} name="value" onChange={this.onChange} /><br />
-            <button type="button" onClick={() => this.props.add(this.state.value).then(() => { console.log('added'); })}>Add</button> 
-            <button type="button" onClick={() => this.props.subtract(this.state.value)}>Subtract</button> 
-            <button type="button" onClick={() => this.props.multiply(this.state.value)}>Multiply</button> 
-            <button type="button" onClick={() => this.props.divide(this.state.value)}>Divide</button><br />
-            Result: {this.props.result}
-        </form>;
+        return <div>
+            <h1>Color Tool</h1>
+            <div className="red-box"></div>
+            <div className="blue-box"></div>
+            <form>
+                <input type="number" value={this.state.value} name="value" onChange={this.onChange} /><br />
+                <button type="button" onClick={() => this.props.add(this.state.value).then(() => { console.log('added'); })}>Add</button> 
+                <button type="button" onClick={() => this.props.subtract(this.state.value)}>Subtract</button> 
+                <button type="button" onClick={() => this.props.multiply(this.state.value)}>Multiply</button> 
+                <button type="button" onClick={() => this.props.divide(this.state.value)}>Divide</button><br />
+                Result: {this.props.result}
+            </form>
+        </div>;
     }
 
 
